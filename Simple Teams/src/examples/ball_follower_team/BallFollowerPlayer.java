@@ -228,7 +228,7 @@ public class BallFollowerPlayer extends Thread {
 			case PLAY_ON:
 				ballX = fieldPerc.getBall().getPosition().getX();
 				ballY = fieldPerc.getBall().getPosition().getY();
-				if (isPointsAreClose(selfPerc.getPosition(), ballPos, 2)) {
+				if (isPointsAreClose(selfPerc.getPosition(), ballPos, 0.5)) {
 					// kick
 					kickToPoint(new Vector2D(0, 0), 100); // TODO CHANGE TO KICK
 															// TO ANOTHER PLAYER
@@ -356,10 +356,11 @@ public class BallFollowerPlayer extends Thread {
 		Vector2D ballPos;
 		PlayerPerception pTemp;
 		Vector2D vTemp = null;
-		;
+		 ArrayList<PlayerPerception> players;
 		while (true) {
 			updatePerceptions();
 			ballPos = fieldPerc.getBall().getPosition();
+		 players = fieldPerc.getAllPlayers();
 			switch (matchPerc.getState()) {
 			case BEFORE_KICK_OFF:
 				commander.doMoveBlocking(xInit, yInit);
@@ -372,6 +373,7 @@ public class BallFollowerPlayer extends Thread {
 						kickToPoint(goalPos, 100); // goalPosition + itensity of
 													// kick
 					} else {
+						//pegar jogador mais perto enimigo para possivelmente tocar
 						// conduz para o gol
 						kickToPoint(goalPos, 25);
 					}
