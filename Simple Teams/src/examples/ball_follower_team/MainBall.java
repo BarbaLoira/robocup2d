@@ -12,7 +12,7 @@ public class MainBall {
 		BallFollowerTeam team2 = new BallFollowerTeam("Alemanha");
 	 
 		team1.launchTeamAndServer();
-		team2.launchTeam();
+		team2.launchNoSwarm();
 	 
 	}
 	
